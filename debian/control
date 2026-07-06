@@ -50,6 +50,7 @@ Depends:
  gstreamer1.0-plugins-imsdk-smartvencbin,
  gstreamer1.0-plugins-imsdk-socket,
  gstreamer1.0-plugins-imsdk-tools,
+ gstreamer1.0-plugins-imsdk-uridecodebin,
  gstreamer1.0-plugins-imsdk-vcomposer,
  gstreamer1.0-plugins-imsdk-videotemplate,
  gstreamer1.0-plugins-imsdk-voverlay,
@@ -360,6 +361,17 @@ Description: GStreamer plugin for video stream splitting and ROI extraction
  regions of interest (ROIs). Supports multiple output pads with independent
  cropping, scaling, and format conversion. Useful for multi-resolution encoding,
  ROI-based processing, and parallel ML inference on different image regions.
+
+Package: gstreamer1.0-plugins-imsdk-uridecodebin
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: The plugin extends GStreamer's URI decoding capabilities by creating
+ and managing decoding pipelines for multimedia streams obtained from
+ URI sources.
+
 
 Package: gstreamer1.0-plugins-imsdk-vtransform
 Section: libs
