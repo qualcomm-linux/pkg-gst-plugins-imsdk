@@ -47,7 +47,6 @@ Depends:
  gstreamer1.0-plugins-imsdk-redissink,
  gstreamer1.0-plugins-imsdk-restricted-zone,
  gstreamer1.0-plugins-imsdk-rtspbin,
- gstreamer1.0-plugins-imsdk-smartvencbin,
  gstreamer1.0-plugins-imsdk-socket,
  gstreamer1.0-plugins-imsdk-tools,
  gstreamer1.0-plugins-imsdk-uridecodebin,
