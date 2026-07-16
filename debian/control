@@ -1,0 +1,546 @@
+Source: gst-plugins-imsdk
+Section: libs
+Priority: optional
+Maintainer: Bala Sai Kosuri <bkosuri@qti.qualcomm.com>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-cmake,
+ cmake,
+ libgstreamer1.0-dev,
+ libgstreamer-plugins-base1.0-dev,
+ libgbm-dev,
+ libgstrtspserver-1.0-dev,
+ libgstreamer-plugins-bad1.0-dev,
+ libsoup-3.0-dev,
+ libcairo2-dev,
+ libjson-glib-dev,
+ librdkafka-dev,
+ libmosquitto-dev,
+ libhiredis-dev,
+ libeigen3-dev,
+ libopencv-dev,
+ opencl-c-headers,
+ libcairo2-dev,
+ libqmmf-dev,
+ libqnn-dev,
+ libsnpe-dev,
+ qcom-video-ctrl-dev,
+ libtensorflow-lite-qcom-dev,
+Standards-Version: 4.6.2
+Homepage: https://github.com/qualcomm/gst-plugins-imsdk
+
+Package: gstreamer1.0-plugins-imsdk
+Section: metapackages
+Architecture: arm64
+Depends:
+ gstreamer1.0-plugins-imsdk-batch,
+ gstreamer1.0-plugins-imsdk-camsrc,
+ gstreamer1.0-plugins-imsdk-metamux,
+ gstreamer1.0-plugins-imsdk-metatransform,
+ gstreamer1.0-plugins-imsdk-mlaclassification,
+ gstreamer1.0-plugins-imsdk-mlaconverter,
+ gstreamer1.0-plugins-imsdk-mldemux,
+ gstreamer1.0-plugins-imsdk-mlmetaextractor,
+ gstreamer1.0-plugins-imsdk-mlmetaparser,
+ gstreamer1.0-plugins-imsdk-mlpostprocess,
+ gstreamer1.0-plugins-imsdk-mlqnn,
+ gstreamer1.0-plugins-imsdk-mlsnpe,
+ gstreamer1.0-plugins-imsdk-mltflite,
+ gstreamer1.0-plugins-imsdk-mlvclassification,
+ gstreamer1.0-plugins-imsdk-mlvconverter,
+ gstreamer1.0-plugins-imsdk-mlvdetection,
+ gstreamer1.0-plugins-imsdk-mlvpose,
+ gstreamer1.0-plugins-imsdk-mlvsegmentation,
+ gstreamer1.0-plugins-imsdk-mlvsuperresolution,
+ gstreamer1.0-plugins-imsdk-msgbroker,
+ gstreamer1.0-plugins-imsdk-objtracker,
+ gstreamer1.0-plugins-imsdk-redissink,
+ gstreamer1.0-plugins-imsdk-restricted-zone,
+ gstreamer1.0-plugins-imsdk-rtspbin,
+ gstreamer1.0-plugins-imsdk-smartvencbin,
+ gstreamer1.0-plugins-imsdk-socket,
+ gstreamer1.0-plugins-imsdk-tools,
+ gstreamer1.0-plugins-imsdk-uridecodebin,
+ gstreamer1.0-plugins-imsdk-vcomposer,
+ gstreamer1.0-plugins-imsdk-videotemplate,
+ gstreamer1.0-plugins-imsdk-voverlay,
+ gstreamer1.0-plugins-imsdk-vsplit,
+ gstreamer1.0-plugins-imsdk-vtransform,
+Description: Complete collection of Qualcomm GStreamer plugins for multimedia and ML processing
+ This metapackage installs all Qualcomm GStreamer plugins, providing comprehensive
+ support for video processing, machine learning inference, metadata handling,
+ messaging, and inter-process communication. Designed for Qualcomm platforms,
+ these plugins enable efficient multimedia pipelines with hardware acceleration
+ and AI capabilities.
+
+Package: gstreamer1.0-plugins-imsdk-batch
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for batching multiple stream buffers
+ Provides the qtibatch element for batching buffers from multiple input streams
+ into a single output buffer. Useful for efficient processing of multiple video
+ or data streams simultaneously, reducing overhead in multi-stream scenarios.
+
+Package: gstreamer1.0-plugins-imsdk-camsrc
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Recommends:
+ qcom-camera-server,
+Description: GStreamer camera source plugin for Qualcomm platforms
+ Provides the qticamsrc element (and the legacy qtiqmmfsrc alias), a live
+ video/image source that captures from Qualcomm camera hardware through the
+ QMMF camera server. The server (qcom-camera-server) must be reachable at
+ runtime, but is only recommended rather than required: this lets the plugin
+ run inside a container that talks to a cam-server instance running on the
+ host platform, instead of forcing the daemon to be co-installed.
+
+Package: gstreamer1.0-plugins-imsdk-metamux
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for multiplexing video/audio streams with metadata
+ Provides the qtimetamux element for muxing video or audio streams with metadata
+ streams. Enables synchronization of media content with associated metadata such
+ as detection results, classifications, or custom annotations in ML pipelines.
+
+Package: gstreamer1.0-plugins-imsdk-metatransform
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for metadata processing and transformation
+ Provides the qtimetatransform element for processing, filtering, and converting
+ metadata attached to buffers. Supports transformation of detection boxes,
+ classification results, and other metadata formats between different coordinate
+ systems and representations.
+
+Package: gstreamer1.0-plugins-imsdk-mlaclassification
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for audio classification using machine learning
+ Provides the qtimlaclassification element for performing audio classification
+ inference. Processes audio streams through ML models to identify sounds, speech,
+ or audio events. (Legacy plugin, consider using mlpostprocess instead)
+
+Package: gstreamer1.0-plugins-imsdk-mlaconverter
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for audio-to-tensor conversion for ML inference
+ Provides the qtimlaconverter element for converting audio streams into tensor
+ format suitable for machine learning model input. Handles audio preprocessing
+ including resampling, normalization, and feature extraction.
+
+Package: gstreamer1.0-plugins-imsdk-mldemux
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for demultiplexing ML inference results
+ Provides the qtimldemux element for demultiplexing and routing machine learning
+ inference results. Separates batched ML outputs into individual streams for
+ parallel post-processing or different downstream consumers.
+
+Package: gstreamer1.0-plugins-imsdk-mlmetaextractor
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for extracting metadata from buffers
+ Provides the qtimlmetaextractor element for extracting metadata attached to
+ buffers and converting it to text or structured format. Useful for debugging,
+ logging, or exporting ML inference results and annotations.
+
+Package: gstreamer1.0-plugins-imsdk-mlmetaparser
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for parsing and attaching metadata to buffers
+ Provides the qtimlmetaparser element for parsing text-based metadata and
+ attaching it to GStreamer buffers. Enables injection of external annotations,
+ ground truth data, or pre-computed results into media pipelines.
+
+Package: gstreamer1.0-plugins-imsdk-mlpostprocess
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for ML inference post-processing
+ Provides the qtimlpostprocess element for post-processing machine learning
+ inference results. Supports multiple model types including object detection
+ (YOLO, SSD, MobileNet), classification, segmentation, and pose estimation.
+ Converts raw model outputs into structured metadata with bounding boxes,
+ labels, and confidence scores.
+
+Package: gstreamer1.0-plugins-imsdk-mlqnn
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libqnn1,
+Description: GStreamer plugin for ML inference using Qualcomm AI Engine Direct (QNN)
+ Provides the qtimlqnn element for running machine learning inference through
+ the Qualcomm AI Engine Direct (QNN) SDK. Executes neural network models on
+ Qualcomm accelerators such as the CPU, GPU, and Hexagon Tensor Processor (HTP),
+ taking preprocessed tensors as input and producing raw model output tensors
+ for downstream post-processing.
+
+Package: gstreamer1.0-plugins-imsdk-mlsnpe
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libsnpe1,
+Description: GStreamer plugin for ML inference using Snapdragon Neural Processing Engine (SNPE)
+ Provides the qtimlsnpe element for running machine learning inference through
+ the Snapdragon Neural Processing Engine (SNPE) SDK. Executes neural network
+ models on Qualcomm accelerators such as the CPU, GPU, and DSP, taking
+ preprocessed tensors as input and producing raw model output tensors for
+ downstream post-processing.
+
+Package: gstreamer1.0-plugins-imsdk-mltflite
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libtensorflow-lite-c-qcom2,
+Description: GStreamer plugin for ML inference using TensorFlow Lite
+ Provides the qtimltflite element for running machine learning inference
+ through the TensorFlow Lite runtime. Executes neural network models on
+ CPU or hardware accelerators via delegates including Hexagon DSP, GPU,
+ XNNPACK, NNAPI, and external delegates, taking preprocessed tensors as
+ input and producing raw model output tensors for downstream post-processing.
+
+Package: gstreamer1.0-plugins-imsdk-mlvclassification
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for video classification using machine learning
+ Provides the qtimlvclassification element for performing video/image
+ classification inference. Processes video frames through ML models to identify
+ objects, scenes, or activities. (Legacy plugin, consider using mlpostprocess)
+
+Package: gstreamer1.0-plugins-imsdk-mlvconverter
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for video-to-tensor conversion for ML inference
+ Provides the qtimlvconverter element for converting video frames into tensor
+ format suitable for machine learning model input. Supports various preprocessing
+ operations including scaling, cropping, color space conversion, normalization,
+ and ROI extraction for efficient batch processing.
+
+Package: gstreamer1.0-plugins-imsdk-mlvdetection
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for object detection using machine learning
+ Provides the qtimlvdetection element for performing object detection inference
+ on video streams. Identifies and localizes objects in frames using ML models.
+ (Legacy plugin, consider using mlpostprocess instead)
+
+Package: gstreamer1.0-plugins-imsdk-mlvpose
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for pose estimation using machine learning
+ Provides the qtimlvpose element for performing human pose estimation inference.
+ Detects body keypoints and skeletal structure from video frames using ML models.
+ (Legacy plugin, consider using mlpostprocess instead)
+
+Package: gstreamer1.0-plugins-imsdk-mlvsegmentation
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for semantic segmentation using machine learning
+ Provides the qtimlvsegmentation element for performing semantic or instance
+ segmentation inference. Classifies each pixel in video frames into categories
+ using ML models. (Legacy plugin, consider using mlpostprocess instead)
+
+Package: gstreamer1.0-plugins-imsdk-mlvsuperresolution
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for video super-resolution using machine learning
+ Provides the qtimlvsuperresolution element for enhancing video resolution using
+ ML-based super-resolution models. Upscales low-resolution video to higher
+ resolution with improved quality and detail preservation.
+
+Package: gstreamer1.0-plugins-imsdk-msgbroker
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for message broker integration (MQTT, Kafka)
+ Provides the qtimsgbroker element for publishing GStreamer pipeline events and
+ metadata to message brokers. Supports MQTT, Apache Kafka Pub/Sub
+ for integration with IoT platforms, analytics systems, and distributed
+ applications.
+
+Package: gstreamer1.0-plugins-imsdk-objtracker
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for multi-object tracking
+ Provides the qtiobjtracker element for tracking detected objects across video
+ frames. Assigns persistent IDs to objects and maintains tracking through
+ occlusions and frame-to-frame variations using algorithms like IOU, KCF,
+ or deep learning-based trackers.
+
+Package: gstreamer1.0-plugins-imsdk-redissink
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer sink plugin for Redis database
+ Provides the qtiredissink element for publishing GStreamer buffers and metadata
+ to Redis database. Enables real-time data streaming to Redis for caching,
+ pub/sub messaging, or integration with Redis-based applications.
+
+Package: gstreamer1.0-plugins-imsdk-restricted-zone
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for restricted zone detection and monitoring
+ Provides the qtirestrictedzone element for detecting when objects enter or
+ exit predefined restricted zones in video frames. Useful for security
+ applications, safety monitoring, and perimeter intrusion detection with
+ configurable zone geometries and alert generation.
+
+Package: gstreamer1.0-plugins-imsdk-rtspbin
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer bin plugin for RTSP streaming
+ Provides the qtirtspbin element, a convenience bin for RTSP (Real-Time
+ Streaming Protocol) server functionality. Simplifies creation of RTSP streaming
+ pipelines with built-in session management, authentication, and multi-client
+ support for IP camera and streaming applications.
+
+Package: gstreamer1.0-plugins-imsdk-smartvencbin
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ qcom-video-ctrl1,
+Description: GStreamer bin plugin for smart video encoding
+ Provides the qtismartvencbin element for intelligent video encoding with
+ dynamic bitrate control and quality optimization. Integrates with Qualcomm's
+ video control framework for adaptive encoding based on content complexity,
+ network conditions, and quality requirements.
+
+Package: gstreamer1.0-plugins-imsdk-socket
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugins for Unix domain socket communication
+ Provides qtisocketsrc and qtisocketsink elements for transferring GStreamer
+ buffers between processes using Unix domain sockets. Enables zero-copy
+ inter-process communication with support for video frames, tensors, metadata,
+ and file descriptor passing for efficient pipeline distribution.
+
+Package: gstreamer1.0-plugins-imsdk-tools
+Section: utils
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: Utility tools for Qualcomm GStreamer plugins
+ Provides command-line utilities and helper tools for working with Qualcomm
+ GStreamer plugins. Includes pipeline testing tools, performance profiling
+ utilities, and debugging aids for development and troubleshooting.
+
+Package: gstreamer1.0-plugins-imsdk-uridecodebin
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for URI-based media decoding with looping support
+ Provides the qtiuridecodebin element, extending GStreamer's URI decoding
+ capabilities by creating and managing decoding pipelines for multimedia
+ streams obtained from URI sources. Supports configurable iteration count
+ for looped playback with seamless timestamp continuity across iterations.
+
+Package: gstreamer1.0-plugins-imsdk-vcomposer
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for video composition and layout
+ Provides the qtivcomposer element for compositing multiple video streams into
+ a single output with configurable layouts. Supports picture-in-picture, split
+ screen, grid layouts, and custom positioning with alpha blending and scaling
+ for multi-view applications and video walls.
+
+Package: gstreamer1.0-plugins-imsdk-videotemplate
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin template for custom video processing
+ Provides a template plugin (qtivideotemplate) demonstrating best practices
+ for creating custom video processing elements. Serves as a starting point
+ for developers building proprietary or specialized video processing plugins
+ for Qualcomm platforms.
+
+Package: gstreamer1.0-plugins-imsdk-voverlay
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for video overlay and graphics rendering
+ Provides the qtivoverlay element for overlaying graphics, text, bounding boxes,
+ and annotations on video frames. Supports Cairo-based rendering with
+ anti-aliasing, transparency, and dynamic content updates for visualization
+ of ML inference results, OSD (on-screen display), and UI elements.
+
+Package: gstreamer1.0-plugins-imsdk-vsplit
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for video stream splitting and ROI extraction
+ Provides the qtivsplit element for splitting video streams and extracting
+ regions of interest (ROIs). Supports multiple output pads with independent
+ cropping, scaling, and format conversion. Useful for multi-resolution encoding,
+ ROI-based processing, and parallel ML inference on different image regions.
+
+Package: gstreamer1.0-plugins-imsdk-vtransform
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: GStreamer plugin for video transformation and format conversion
+ Provides the qtivtransform element for video format conversion, scaling,
+ cropping, and color space transformation. Leverages Qualcomm hardware
+ accelerators for efficient video processing with support for
+ various formats including NV12, NV21, RGBA, and compressed formats.
+
+Package: gstreamer1.0-plugins-imsdk-base
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: Base library for Qualcomm GStreamer plugins
+ Provides common infrastructure, utilities, and base classes used by Qualcomm
+ GStreamer plugins. Includes memory allocators, metadata definitions, ML
+ framework integration, video utilities, and hardware abstraction layers.
+ Required dependency for most Qualcomm GStreamer plugins.
+
+Package: libgstreamer1.0-plugins-imsdk-base-dev
+Section: libdevel
+Architecture: arm64
+Depends:
+  gstreamer1.0-plugins-imsdk-base (= ${binary:Version}),
+  ${misc:Depends},
+Description: Development files for Qualcomm GStreamer base library
+ Provides headers, pkg-config files, and development libraries for building
+ custom GStreamer plugins that integrate with Qualcomm's plugin ecosystem.
+ Includes APIs for metadata handling, ML integration, hardware acceleration,
+ and common utilities.
+
+Package: gstreamer1.0-imsdk-python-examples
+Section: utils
+Architecture: arm64
+Depends:
+ python3,
+ python3-gst-1.0,
+ python3-opencv,
+ gstreamer1.0-plugins-imsdk,
+Description: Python examples for Qualcomm GStreamer plugins
+ Provides Python-based example applications and scripts demonstrating usage
+ of Qualcomm GStreamer plugins through Python bindings. Includes examples for
+ ML inference, video processing, metadata handling, and pipeline construction
+ using PyGObject and OpenCV integration.
+
+Package: gstreamer1.0-imsdk-sample-apps-utils
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: Shared utility library for Qualcomm GStreamer sample applications
+ Provides common helper functions and utilities used by Qualcomm GStreamer
+ sample applications. Includes pipeline construction helpers, SOC/chipset
+ detection, signal handling, camera plugin availability checks, and
+ application context management for building GStreamer-based applications
+ on Qualcomm platforms.
+
+Package: libgstreamer1.0-imsdk-sample-apps-utils-dev
+Section: libdevel
+Architecture: arm64
+Depends:
+ gstreamer1.0-imsdk-sample-apps-utils (= ${binary:Version}),
+ ${misc:Depends},
+Description: Development files for Qualcomm GStreamer sample applications utility library
+ Provides headers and development libraries for building applications that
+ use the Qualcomm GStreamer sample applications utility library. Includes
+ APIs for pipeline management, application context handling, and common
+ utilities for Qualcomm GStreamer application development.
+
+Package: gstreamer1.0-imsdk-sample-apps
+Section: utils
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ gstreamer1.0-plugins-imsdk,
+Description: Sample applications for Qualcomm GStreamer plugins
+ Provides a collection of sample applications demonstrating the use of
+ Qualcomm GStreamer plugins. Includes examples for AI inference pipelines
+ (object detection, classification, segmentation, pose estimation,
+ face recognition, super-resolution), video encoding, multi-stream
+ processing, and camera capture on Qualcomm platforms.
