@@ -20,9 +20,6 @@ Build-Depends:
  libopencv-dev,
  opencl-c-headers,
  libcairo2-dev,
- libqmmf-dev,
- libqnn-dev,
- libsnpe-dev,
 Standards-Version: 4.6.2
 Homepage: https://github.com/qualcomm/gst-plugins-imsdk
 
@@ -31,10 +28,6 @@ Section: metapackages
 Architecture: arm64
 Depends:
  gstreamer1.0-plugins-imsdk-batch,
- gstreamer1.0-plugins-imsdk-camsrc,
- gstreamer1.0-plugins-imsdk-camreproc,
- gstreamer1.0-plugins-imsdk-camimgreproc,
- gstreamer1.0-plugins-imsdk-jpegenc,
  gstreamer1.0-plugins-imsdk-metamux,
  gstreamer1.0-plugins-imsdk-metatransform,
  gstreamer1.0-plugins-imsdk-mlaclassification,
@@ -43,8 +36,6 @@ Depends:
  gstreamer1.0-plugins-imsdk-mlmetaextractor,
  gstreamer1.0-plugins-imsdk-mlmetaparser,
  gstreamer1.0-plugins-imsdk-mlpostprocess,
- gstreamer1.0-plugins-imsdk-mlqnn,
- gstreamer1.0-plugins-imsdk-mlsnpe,
  gstreamer1.0-plugins-imsdk-mlvclassification,
  gstreamer1.0-plugins-imsdk-mlvconverter,
  gstreamer1.0-plugins-imsdk-mlvdetection,
@@ -81,68 +72,6 @@ Description: GStreamer plugin for batching multiple stream buffers
  Provides the qtibatch element for batching buffers from multiple input streams
  into a single output buffer. Useful for efficient processing of multiple video
  or data streams simultaneously, reducing overhead in multi-stream scenarios.
-
-Package: gstreamer1.0-plugins-imsdk-camsrc
-Section: libs
-Architecture: arm64
-Depends:
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends:
- qcom-camera-server,
-Description: GStreamer camera source plugin for Qualcomm platforms
- Provides the qticamsrc element (and the legacy qtiqmmfsrc alias), a live
- video/image source that captures from Qualcomm camera hardware through the
- QMMF camera server. The server (qcom-camera-server) must be reachable at
- runtime, but is only recommended rather than required: this lets the plugin
- run inside a container that talks to a cam-server instance running on the
- host platform, instead of forcing the daemon to be co-installed.
-
-Package: gstreamer1.0-plugins-imsdk-camreproc
-Section: libs
-Architecture: arm64
-Depends:
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends:
- qcom-camera-server,
-Description: GStreamer camera reprocessing plugin for Qualcomm platforms
- Provides the qticamreproc element for reprocessing captured camera frames
- through the QMMF camera server (for example noise reduction and other
- offline camera post-processing). The server (qcom-camera-server) must be
- reachable at runtime, but is only recommended rather than required so the
- plugin can run in a container that talks to a cam-server instance running
- on the host platform.
-
-Package: gstreamer1.0-plugins-imsdk-camimgreproc
-Section: libs
-Architecture: arm64
-Depends:
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends:
- qcom-camera-server,
-Description: GStreamer camera image reprocessing plugin for Qualcomm platforms
- Provides the qticamimgreproc element for offline image reprocessing of
- camera buffers through the QMMF camera server. The server
- (qcom-camera-server) must be reachable at runtime, but is only recommended
- rather than required so the plugin can run in a container that talks to a
- cam-server instance running on the host platform.
-
-Package: gstreamer1.0-plugins-imsdk-jpegenc
-Section: libs
-Architecture: arm64
-Depends:
- ${shlibs:Depends},
- ${misc:Depends},
-Recommends:
- qcom-camera-server,
-Description: GStreamer JPEG encoder plugin for Qualcomm platforms
- Provides the qtijpegenc element for hardware-assisted JPEG encoding of
- camera frames through the QMMF camera server. The server
- (qcom-camera-server) must be reachable at runtime, but is only recommended
- rather than required so the plugin can run in a container that talks to a
- cam-server instance running on the host platform.
 
 Package: gstreamer1.0-plugins-imsdk-metamux
 Section: libs
@@ -234,34 +163,6 @@ Description: GStreamer plugin for ML inference post-processing
  (YOLO, SSD, MobileNet), classification, segmentation, and pose estimation.
  Converts raw model outputs into structured metadata with bounding boxes,
  labels, and confidence scores.
-
-Package: gstreamer1.0-plugins-imsdk-mlqnn
-Section: libs
-Architecture: arm64
-Depends:
- ${shlibs:Depends},
- ${misc:Depends},
- libqnn1,
-Description: GStreamer plugin for ML inference using Qualcomm AI Engine Direct (QNN)
- Provides the qtimlqnn element for running machine learning inference through
- the Qualcomm AI Engine Direct (QNN) SDK. Executes neural network models on
- Qualcomm accelerators such as the CPU, GPU, and Hexagon Tensor Processor (HTP),
- taking preprocessed tensors as input and producing raw model output tensors
- for downstream post-processing.
-
-Package: gstreamer1.0-plugins-imsdk-mlsnpe
-Section: libs
-Architecture: arm64
-Depends:
- ${shlibs:Depends},
- ${misc:Depends},
- libsnpe1,
-Description: GStreamer plugin for ML inference using Snapdragon Neural Processing Engine (SNPE)
- Provides the qtimlsnpe element for running machine learning inference through
- the Snapdragon Neural Processing Engine (SNPE) SDK. Executes neural network
- models on Qualcomm accelerators such as the CPU, GPU, and DSP, taking
- preprocessed tensors as input and producing raw model output tensors for
- downstream post-processing.
 
 Package: gstreamer1.0-plugins-imsdk-mlvclassification
 Section: libs
