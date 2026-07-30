@@ -9,7 +9,8 @@ Build-Depends:
  cmake,
  libgstreamer1.0-dev,
  libgstreamer-plugins-base1.0-dev,
- libgbm-dev,
+ libgstreamer-plugins-bad1.0-dev,
+ libsoup-3.0-dev,
  libgstrtspserver-1.0-dev,
  libcairo2-dev,
  libjson-glib-dev,
@@ -454,3 +455,41 @@ Description: Python examples for Qualcomm GStreamer plugins
  ML inference, video processing, metadata handling, and pipeline construction
  using PyGObject and OpenCV integration.
 
+Package: gstreamer1.0-imsdk-sample-apps-utils
+Section: libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: Shared utility library for Qualcomm GStreamer sample applications
+ Provides common helper functions and utilities used by Qualcomm GStreamer
+ sample applications. Includes pipeline construction helpers, SOC/chipset
+ detection, signal handling, camera plugin availability checks, and
+ application context management for building GStreamer-based applications
+ on Qualcomm platforms.
+
+Package: libgstreamer1.0-imsdk-sample-apps-utils-dev
+Section: libdevel
+Architecture: arm64
+Depends:
+ gstreamer1.0-imsdk-sample-apps-utils (= ${binary:Version}),
+ ${misc:Depends},
+Description: Development files for Qualcomm GStreamer sample applications utility library
+ Provides headers and development libraries for building applications that
+ use the Qualcomm GStreamer sample applications utility library. Includes
+ APIs for pipeline management, application context handling, and common
+ utilities for Qualcomm GStreamer application development.
+
+Package: gstreamer1.0-imsdk-sample-apps
+Section: utils
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ gstreamer1.0-plugins-imsdk,
+Description: Sample applications for Qualcomm GStreamer plugins
+ Provides a collection of sample applications demonstrating the use of
+ Qualcomm GStreamer plugins. Includes examples for AI inference pipelines
+ (object detection, classification, segmentation, pose estimation,
+ face recognition, super-resolution), video encoding, multi-stream
+ processing, and camera capture on Qualcomm platforms.
