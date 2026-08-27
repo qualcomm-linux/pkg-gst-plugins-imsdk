@@ -1,3 +1,9 @@
+gst-plugins-imsdk (1.0.2-0qli2~bpo13+1) trixie; urgency=medium
+
+  * Rebuild for trixie
+
+ -- Bala Sai Kosuri <bkosuri@qti.qualcomm.com>  Thu, 27 Aug 2026 09:13:06 +0530
+
 gst-plugins-imsdk (1.0.2-0qli2) forky; urgency=medium
 
   * Update Section for all packages
