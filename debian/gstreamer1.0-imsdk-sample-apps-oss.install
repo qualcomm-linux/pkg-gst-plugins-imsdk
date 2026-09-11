@@ -1,6 +1,7 @@
 etc/configs
 usr/bin/GstD-camera-single-stream-example
 usr/bin/gst-ai-audio-classification
+usr/bin/gst-ai-group-framing-app
 usr/bin/gst-ai-superresolution
 usr/bin/gst-ai-video-classification
 usr/bin/gst-ai-video-daisychain-pose-estimation
@@ -24,3 +25,4 @@ usr/bin/gst-video-source-example
 usr/bin/gst-video-transcode-example
 usr/bin/gst-video-wall
 usr/bin/gst-videocodec-concurrent-playback
+usr/bin/gst-webrtc-sendrecv-example
