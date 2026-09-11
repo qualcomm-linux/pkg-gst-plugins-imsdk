@@ -1,3 +1,9 @@
+gst-plugins-imsdk (1.0.3-0clo1) forky; urgency=medium
+
+  * New upstream release v1.0.3
+
+ -- Bala Sai Kosuri <bkosuri@qti.qualcomm.com>  Thu, 10 Sep 2026 22:28:37 -0700
+
 gst-plugins-imsdk (1.0.2-1clo1) forky; urgency=medium
 
   * Use clo in version revision

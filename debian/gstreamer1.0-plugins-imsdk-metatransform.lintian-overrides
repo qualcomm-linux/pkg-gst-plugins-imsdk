@@ -1,2 +1,5 @@
 # upstream does not provide copyright years
 gstreamer1.0-plugins-imsdk-metatransform: copyright-without-copyright-notice
+# This package bundles the afralgo together
+# with the plugins that load them, under a single name.
+gstreamer1.0-plugins-imsdk-metatransform: package-name-doesnt-match-sonames *

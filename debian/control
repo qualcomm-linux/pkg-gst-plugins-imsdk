@@ -21,6 +21,7 @@ Build-Depends:
  opencl-c-headers,
  libcairo2-dev,
  libqmmf-dev,
+ libqimsdk-smartvenc-dev,
 Standards-Version: 4.6.2
 Homepage: https://github.com/qualcomm/gst-plugins-imsdk
 
@@ -28,8 +29,9 @@ Package: gstreamer1.0-plugins-imsdk
 Section: contrib/metapackages
 Architecture: arm64
 Depends:
- gstreamer1.0-plugins-imsdk-oss,
- gstreamer1.0-plugins-imsdk-camsrc,
+ gstreamer1.0-plugins-imsdk-oss (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-camsrc (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-smartvencbin (= ${binary:Version}),
  ${misc:Depends},
 Description: Complete collection of Qualcomm GStreamer plugins
  This metapackage installs all Qualcomm GStreamer plugins, providing
@@ -45,34 +47,34 @@ Package: gstreamer1.0-plugins-imsdk-oss
 Section: contrib/metapackages
 Architecture: arm64
 Depends:
- gstreamer1.0-plugins-imsdk-batch,
- gstreamer1.0-plugins-imsdk-metamux,
- gstreamer1.0-plugins-imsdk-metatransform,
- gstreamer1.0-plugins-imsdk-mlaclassification,
- gstreamer1.0-plugins-imsdk-mlaconverter,
- gstreamer1.0-plugins-imsdk-mldemux,
- gstreamer1.0-plugins-imsdk-mlmetaextractor,
- gstreamer1.0-plugins-imsdk-mlmetaparser,
- gstreamer1.0-plugins-imsdk-mlpostprocess,
- gstreamer1.0-plugins-imsdk-mlvclassification,
- gstreamer1.0-plugins-imsdk-mlvconverter,
- gstreamer1.0-plugins-imsdk-mlvdetection,
- gstreamer1.0-plugins-imsdk-mlvpose,
- gstreamer1.0-plugins-imsdk-mlvsegmentation,
- gstreamer1.0-plugins-imsdk-mlvsuperresolution,
- gstreamer1.0-plugins-imsdk-msgbroker,
- gstreamer1.0-plugins-imsdk-objtracker,
- gstreamer1.0-plugins-imsdk-redissink,
- gstreamer1.0-plugins-imsdk-restricted-zone,
- gstreamer1.0-plugins-imsdk-rtspbin,
- gstreamer1.0-plugins-imsdk-socket,
- gstreamer1.0-plugins-imsdk-tools,
- gstreamer1.0-plugins-imsdk-uridecodebin,
- gstreamer1.0-plugins-imsdk-vcomposer,
- gstreamer1.0-plugins-imsdk-videotemplate,
- gstreamer1.0-plugins-imsdk-voverlay,
- gstreamer1.0-plugins-imsdk-vsplit,
- gstreamer1.0-plugins-imsdk-vtransform,
+ gstreamer1.0-plugins-imsdk-batch (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-metamux (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-metatransform (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlaclassification (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlaconverter (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mldemux (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlmetaextractor (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlmetaparser (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlpostprocess (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlvclassification (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlvconverter (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlvdetection (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlvpose (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlvsegmentation (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-mlvsuperresolution (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-msgbroker (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-objtracker (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-redissink (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-restricted-zone (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-rtspbin (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-socket (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-tools (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-uridecodebin (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-vcomposer (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-videotemplate (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-voverlay (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-vsplit (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk-vtransform (= ${binary:Version}),
  ${misc:Depends},
 Description: Collection of Qualcomm GStreamer plugins with open-source deps only
  This metapackage installs the Qualcomm GStreamer plugins that depend solely
@@ -326,6 +328,19 @@ Description: GStreamer bin plugin for RTSP streaming
  pipelines with built-in session management, authentication, and multi-client
  support for IP camera and streaming applications.
 
+Package: gstreamer1.0-plugins-imsdk-smartvencbin
+Section: contrib/libs
+Architecture: arm64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ libqimsdk-smartvenc1,
+Description: GStreamer bin plugin for smart video encoding
+ Provides the qtismartvencbin element for intelligent video encoding with
+ dynamic bitrate control and quality optimization. Integrates with Qualcomm's
+ video control framework for adaptive encoding based on content complexity,
+ network conditions, and quality requirements.
+
 Package: gstreamer1.0-plugins-imsdk-socket
 Section: contrib/libs
 Architecture: arm64
@@ -451,7 +466,7 @@ Depends:
  python3,
  python3-gst-1.0,
  python3-opencv,
- gstreamer1.0-plugins-imsdk-oss,
+ gstreamer1.0-plugins-imsdk-oss (= ${binary:Version}),
  ${misc:Depends},
 Description: Python examples for Qualcomm GStreamer plugins (OSS deps only)
  Provides the subset of Python-based example applications and scripts that
@@ -468,8 +483,8 @@ Depends:
  python3,
  python3-gst-1.0,
  python3-opencv,
- gstreamer1.0-imsdk-python-examples-oss,
- gstreamer1.0-plugins-imsdk,
+ gstreamer1.0-imsdk-python-examples-oss (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk (= ${binary:Version}),
  ${misc:Depends},
 Description: Python examples for Qualcomm GStreamer plugins
  Provides Python-based example applications and scripts demonstrating usage
@@ -510,7 +525,7 @@ Architecture: arm64
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
- gstreamer1.0-plugins-imsdk-oss,
+ gstreamer1.0-plugins-imsdk-oss (= ${binary:Version}),
 Description: Sample applications for Qualcomm GStreamer plugins (OSS deps only)
  Provides the subset of Qualcomm GStreamer sample applications that depend
  solely on open-source components. Includes examples for AI inference pipelines,
@@ -525,8 +540,8 @@ Architecture: arm64
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
- gstreamer1.0-imsdk-sample-apps-oss,
- gstreamer1.0-plugins-imsdk,
+ gstreamer1.0-imsdk-sample-apps-oss (= ${binary:Version}),
+ gstreamer1.0-plugins-imsdk (= ${binary:Version}),
 Description: Sample applications for Qualcomm GStreamer plugins
  Provides a collection of sample applications demonstrating the use of
  Qualcomm GStreamer plugins. Includes examples for AI inference pipelines
