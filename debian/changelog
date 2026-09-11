@@ -1,3 +1,9 @@
+gst-plugins-imsdk (1.0.3-0clo1~bpo13+1) trixie; urgency=medium
+
+  * New upstream release v1.0.3
+
+ -- Bala Sai Kosuri <bkosuri@qti.qualcomm.com>  Fri, 11 Sep 2026 14:36:42 +0530
+
 gst-plugins-imsdk (1.0.2-1clo1~bpo13+1) trixie; urgency=medium
 
   * Use clo in version revision
